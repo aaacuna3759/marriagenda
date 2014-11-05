@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <string name="splash_image">Splash Screen Image</string>
+    <string name="marriagenda"><b>marriAGENDA</b></string>
     <string name="app_name">marriagenda</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-	<string name="login_button">LOGIN</string>
-    
-    
+    <string name="login_button">LOGIN</string>
+    <string name="register_button">Register</string>
+    <string name="login_image">Image Logo</string>
+
 </resources>
