@@ -9,5 +9,6 @@
     <string name="login_button">LOGIN</string>
     <string name="register_button">Register</string>
     <string name="login_image">Image Logo</string>
+    <string name="random">HELLO RANDOM</string>
 
 </resources>
