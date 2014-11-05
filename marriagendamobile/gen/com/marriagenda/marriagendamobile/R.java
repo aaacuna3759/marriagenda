@@ -53,6 +53,7 @@ public final class R {
         public static final int login_button=0x7f050005;
         public static final int login_image=0x7f050007;
         public static final int marriagenda=0x7f050001;
+        public static final int random=0x7f050008;
         public static final int register_button=0x7f050006;
         public static final int splash_image=0x7f050000;
     }
