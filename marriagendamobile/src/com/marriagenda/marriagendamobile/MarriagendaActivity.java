@@ -1,16 +1,52 @@
 package com.marriagenda.marriagendamobile;
 
-import android.app.Activity;
+import marriagenda.controller.utilities.Event;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTabHost;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class MarriagendaActivity extends Activity {
+public class MarriagendaActivity extends FragmentActivity {
+
+	private FragmentTabHost mTabHost;
+	private Event createdEvent;
+	private String mPreviousScreen;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.login_marriagenda);
+
+		Log.d("MarriagendaActivity", "about to get Previous Screen");
+		mPreviousScreen = getIntent().getStringExtra("PreviousActivity");
+		Log.d("MarriagendaActivity", "previous screen is " + mPreviousScreen);
+
+		Bundle b = new Bundle();
+
+		if (mPreviousScreen.equals("marriagendaLogin")) {
+			createdEvent = (Event) getIntent().getSerializableExtra(
+					"CreatedEvent");
+			b.putSerializable("CreatedEvent", createdEvent);
+		} else if (mPreviousScreen.equals("NewEvent")) {
+			b.putBoolean("MadeNewEvent", true);
+		}
+
+		setContentView(R.layout.activity_marriagenda);
+
+		Log.d("MarriagendaActivity", "about to make tabs");
+
+		mTabHost = (FragmentTabHost) findViewById(R.id.tabhost);
+		mTabHost.setup(this, getSupportFragmentManager(), R.id.realtabcontent);
+
+		mTabHost.addTab(
+				mTabHost.newTabSpec("adminTab").setIndicator("My Events"),
+				Admin_Fragment.class, b);
+		mTabHost.addTab(
+				mTabHost.newTabSpec("guestTab").setIndicator("My Invites"),
+				Guest_Fragment.class, b);
+
+		Log.d("MarriagendaActivity", "Tab making completed");
 
 	}
 

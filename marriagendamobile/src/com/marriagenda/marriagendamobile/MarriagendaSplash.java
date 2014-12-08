@@ -19,7 +19,7 @@ public class MarriagendaSplash extends Activity {
 			public void run() {
 
 				Intent i = new Intent(MarriagendaSplash.this,
-						MarriagendaActivity.class);
+						marriagendaLogin.class);
 				startActivity(i);
 
 				finish();
