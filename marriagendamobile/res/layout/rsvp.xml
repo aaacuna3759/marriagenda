@@ -86,7 +86,7 @@
     </RadioGroup>
 
     <EditText
-        android:id="@+id/editText1"
+        android:id="@+id/email_invite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/radioGroup2"
@@ -101,10 +101,10 @@
     </EditText>
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/invite_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editText1"
+        android:layout_below="@+id/email_invite"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="32dp"
         android:text="Submit RSVP" />

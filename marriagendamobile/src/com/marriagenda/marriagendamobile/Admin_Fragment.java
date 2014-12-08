@@ -1,8 +1,10 @@
 package com.marriagenda.marriagendamobile;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import marriagenda.controller.utilities.Event;
+import marriagenda.controller.utilities.Location;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,6 +13,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -29,11 +33,16 @@ public class Admin_Fragment extends Fragment {
 	private ListView eventList;
 	private ArrayList<Event> mEventList = new ArrayList<Event>();
 	private ArrayList<String> mEventNames = new ArrayList<String>();
+
+	private ArrayList<Calendar> mEventDates = new ArrayList<Calendar>();
+	private ArrayList<Location> mEventLocations = new ArrayList<Location>();
+
 	// set to the next empty space, if there is 3 objects (0,1,2), index = 3
 	private int mEventIndex;
 	private boolean newEvent;
 
 	private Event createdEvent = null;
+	private Location createdLocation = null;
 
 	Button mNewEventButton;
 
@@ -47,6 +56,7 @@ public class Admin_Fragment extends Fragment {
 			Event spacer = new Event();
 			spacer.setName("Events Shown Below");
 			mEventList.add(spacer);
+			mEventLocations.add(new Location());
 		}
 
 		newEvent = getArguments().getBoolean("MadeNewEvent", false);
@@ -55,6 +65,10 @@ public class Admin_Fragment extends Fragment {
 			createdEvent = (Event) getActivity().getIntent()
 					.getSerializableExtra("CreatedEvent");
 			mEventList.add(createdEvent);
+			mEventLocations.add((Location) getActivity().getIntent()
+					.getSerializableExtra("Location"));
+			createdLocation = (Location) getActivity().getIntent()
+					.getSerializableExtra("Location");
 		}
 
 		updateList();
@@ -75,6 +89,21 @@ public class Admin_Fragment extends Fragment {
 				android.R.layout.simple_list_item_1, mEventNames);
 
 		eventList.setAdapter(adapter);
+
+		Location loc = new Location("Elmo's House", "123 Sesame Street",
+				"New York City", "NY", 11234, "Everyone knows this place");
+
+		eventList.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				Intent i = new Intent(getActivity(), EventInvite.class);
+				i.putExtra("Event", createdEvent);
+				i.putExtra("Location", createdLocation);
+				startActivity(i);
+			}
+		});
 
 		// Taking care of the button
 		mNewEventButton = (Button) v.findViewById(R.id.new_event_button);

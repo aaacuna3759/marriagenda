@@ -16,8 +16,8 @@ public class marriagendaLogin extends Activity {
 	private EditText mPassword;
 	private TextView mMessage;
 
-	private String mPW = "admin";
-	private String mUN = "admin";
+	private String mPW;
+	private String mUN;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -28,6 +28,17 @@ public class marriagendaLogin extends Activity {
 		mUsername = (EditText) findViewById(R.id.usernameField);
 		mPassword = (EditText) findViewById(R.id.passwordField);
 		mMessage = (TextView) findViewById(R.id.messages);
+
+		Intent i = getIntent();
+		String lastScreen = i.getStringExtra("LastActivity");
+
+		if (lastScreen.equals("MarriagendaSplash")) {
+			mPW = "admin";
+			mUN = "Admin";
+		} else if (lastScreen.equals("MarriagendaRegister")) {
+			mPW = i.getStringExtra("password");
+			mUN = i.getStringExtra("username");
+		}
 
 		mLoginButton.setOnClickListener(new View.OnClickListener() {
 
@@ -46,15 +57,15 @@ public class marriagendaLogin extends Activity {
 				}
 			}
 		});
-		
+
 		mRegisterButton.setOnClickListener(new View.OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				Intent i = new Intent(marriagendaLogin.this,
 						MarriagendaRegister.class);
 				startActivity(i);
-				
+
 				finish();
 			}
 		});

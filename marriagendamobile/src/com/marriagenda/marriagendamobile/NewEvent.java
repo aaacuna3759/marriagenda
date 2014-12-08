@@ -46,7 +46,7 @@ public class NewEvent extends Activity {
 		mEventCity = (EditText) findViewById(R.id.event_city);
 		mEventState = (EditText) findViewById(R.id.event_state);
 		mEventZIP = (EditText) findViewById(R.id.event_zip);
-		mEventDescription = (EditText) findViewById(R.id.event_info_container);
+		mEventDescription = (EditText) findViewById(R.id.username_invite);
 
 		mDateDisplay = (TextView) findViewById(R.id.date_display);
 		mTimeDisplay = (TextView) findViewById(R.id.time_display);
@@ -118,6 +118,7 @@ public class NewEvent extends Activity {
 				Intent i = new Intent(NewEvent.this, MarriagendaActivity.class);
 				i.putExtra("PreviousActivity", "NewEvent");
 				i.putExtra("CreatedEvent", event);
+				i.putExtra("Location", eventLocation);
 				startActivity(i);
 			}
 		});

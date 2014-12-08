@@ -30,5 +30,8 @@
     <string name="no">No</string>
     <string name="yes">Yes</string>
     <string name="attending">Are You Attending?</string>
+    <string name="email_invite">Invite by E-Mail</string>
+    <string name="username_invite">Invite By Username</string>
+    <string name="invite">Invite</string>
 
 </resources>

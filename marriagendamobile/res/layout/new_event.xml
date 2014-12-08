@@ -173,7 +173,7 @@
         android:textSize="25sp" />
 
     <EditText
-        android:id="@+id/event_info_container"
+        android:id="@+id/username_invite"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginLeft="5dp"
